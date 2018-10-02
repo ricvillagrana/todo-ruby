@@ -3,19 +3,14 @@
     <nav class="navbar is-light" v-if="user.id">
       <div class="navbar-brand">
         <span class="navbar-item">
-          <h1 calss="title is-8">ToDo App</h1>
+          <h1 calss="title is-8">Todo App</h1>
         </span>
-        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
       </div>
 
       <div id="navbarExampleTransparentExample" class="navbar-menu">
         <div class="navbar-start">
           <a class="navbar-item" href="/">
-            ToDo lists
+            My lists
           </a>
         </div>
       </div>

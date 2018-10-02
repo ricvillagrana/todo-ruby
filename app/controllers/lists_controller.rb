@@ -10,7 +10,7 @@ class ListsController < ApplicationController
 
   def index
     @lists = current_user.lists
-    render json: { lists: @lists }
+    render json: { lists: @lists.to_json(include: :tasks) }
   end
 
   private

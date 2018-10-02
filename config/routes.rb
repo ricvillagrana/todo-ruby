@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'main#index'
 
   resources :lists
+  resources :tasks
 
   #get '/lists/of/:id', to: 'lists#lists_of'
 

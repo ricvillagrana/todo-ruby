@@ -1,34 +1,27 @@
 <template>
   <div class="column is-10 is-offset-1">
     <div class="mb-40">
-      <span class="title is-3">Your lists</span>
-      <a @click="add" class="button is-link is-rounded is-pulled-right"><i class="fa fa-plus"></i> Add new</a>
+      <span class="title is-3">My lists</span>
+      <a @click="addList" class="button is-link is-rounded is-pulled-right"><i class="fa fa-plus"></i> Add new</a>
     </div>
     <div class="lists columns is-4">
-      <div v-if="lists.length == 0">No lists yet <a @click="add">add one.</a></div>
+      <div v-if="lists.length == 0">No lists yet <a @click="addList">add one.</a></div>
       <div class="column is-3" v-for="(list, key) in lists" :key="key">
         <div class="card">
           <div class="card-content">
             <div class="title">
               {{ list.name }}
-              <div class="dropdown">
-                <div class="dropdown-trigger">
-                  <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
-                    <span class="icon is-small">
-                      <i class="fa fa-ellipsis-h fa-no-border" aria-hidden="true"></i>
-                    </span>
-                  </button>
-                </div>
-              </div>
+              <list-options :list="list" />
             </div>
             <p class="subtitle">
               {{ list.description }}
             </p>
           </div>
           <div class="card-content">
-            <div class="tasks-list">
-              s
+            <div class="tasks-list" v-for="(task, key) in list.tasks" :key="key">
+              <task :task="task" />
             </div>
+            <div class="add-task button is-link"><i class="fa fa-plus"></i></div>
           </div>
         </div>
       </div>
@@ -39,6 +32,8 @@
 <script>
 import swal from 'sweetalert2'
 import axios from 'axios'
+import ListOptions from './ListOptions'
+import Task from './Task'
 
 export default {
   name: 'list',
@@ -47,7 +42,9 @@ export default {
       lists: []
     }
   },
-  components: {},
+  components: {
+    Task, ListOptions
+  },
   beforeMount() {
     this.fetchLists()
   },
@@ -56,7 +53,7 @@ export default {
       const that = this 
       axios.get('/lists')
       .then(result => {
-        that.lists = result.data.lists
+        that.lists = JSON.parse(result.data.lists)
       })
       .catch(err => {
         swal({
@@ -66,7 +63,7 @@ export default {
         })
       }) 
     },
-    add: function () {
+    addList: function () {
       const that = this
       swal.mixin({
         input: 'text',
@@ -94,11 +91,6 @@ export default {
           axios.post('/lists', {
             ...list
           }).then(response => {
-            swal({
-              title: 'List registered!',
-              html: `${result.value[0]} is gonna be awesome.`,
-              confirmButtonText: 'Done'
-            })
             that.fetchLists()
           })
           .catch(err => {

@@ -7,7 +7,7 @@
 .fa {
   padding-right: 5px;
 }
-.fa-no-border{
+.fa-no-reset{
   padding-right: 0px;
 }
 
@@ -54,13 +54,13 @@ $positions: ('top','left','bottom','right');
 
 .hide-notification {
   position: absolute;
-  top: 25px;
+  bottom: 25px;
   right: -50%;
   transition-duration: 1s;
 }
 .show-notification {
   position: absolute;
-  top: 25px;
+  bottom: 25px;
   right: 25px;
   transition-duration: 1s;
   z-index: 100;
