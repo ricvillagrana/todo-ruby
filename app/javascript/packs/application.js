@@ -9,11 +9,20 @@
 
 import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
+import Notify from '../components/Notify'
+import axios from 'axios'
 import App from '../app.vue'
+import Lists from '../components/Lists'
+
+let token = document.getElementsByName('csrf-token')[0].getAttribute('content')
+axios.defaults.headers.common['X-CSRF-Token'] = token
+axios.defaults.headers.common['Accept'] = 'application/json'
 
 Vue.use(TurbolinksAdapter)
 
 Vue.component('app', App)
+Vue.component('notify', Notify)
+Vue.component('lists', Lists)
 
 document.addEventListener('turbolinks:load', () => {
   const app = new Vue({

@@ -11,10 +11,18 @@
   </head>
 
   <body>
-    <div id="app">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      <%= yield %>
+    <div id="app" class="container-fluid">
+      <app :user="<%= @user.to_json %>" :token="<%= form_authenticity_token.to_json %>">
+        <div class="notice level">
+          <% if notice != nil %>
+            <notify type="info" text="<%= notice %>" />
+          <% end %>
+          <% if alert != nil %>
+            <notify type="danger" text="<%= alert %>" />
+          <% end %>
+        </div>
+        <%= yield %>
+      </app>
     </div>
   </body>
 </html>

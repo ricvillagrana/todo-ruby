@@ -1,3 +1,64 @@
 // Place all the styles related to the main controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bulma";
+@import 'font-awesome/scss/font-awesome.scss';
+
+.fa {
+  padding-right: 5px;
+}
+
+$sizes: (0,1,2,3,4,5,10,15,20,25,30,35,40,45,50);
+$positions: ('top','left','bottom','right');
+
+@each $size in $sizes {
+  .m-#{$size} {
+    margin: $size + px;
+  }
+  .p-#{$size} {
+    padding: $size + px;
+  }
+  .py-#{$size} {
+    padding-top: $size + px;
+    padding-bottom: $size + px;
+  }
+  .px-#{$size} {
+    padding-right: $size + px;
+    padding-left: $size + px;
+  }
+  .my-#{$size} {
+    margin-top: $size + px;
+    margin-bottom: $size + px;
+  }
+  .mx-#{$size} {
+    margin-right: $size + px;
+    margin-left: $size + px;
+  }
+  .py-#{$size} {
+    padding-top: $size + px;
+    padding-bottom: $size + px;
+  }
+  .pr-#{$size} {padding-right: $size + px;}
+  .pl-#{$size} {padding-left: $size + px;}
+  .pt-#{$size} {padding-top: $size + px;}
+  .pb-#{$size} {padding-bottom: $size + px;}
+
+  .mr-#{$size} {margin-right: $size + px;}
+  .ml-#{$size} {margin-left: $size + px;}
+  .mt-#{$size} {margin-top: $size + px;}
+  .mb-#{$size} {margin-bottom: $size + px;}
+}
+
+.hide-notification {
+  position: absolute;
+  top: 25px;
+  right: -50%;
+  transition-duration: 1s;
+}
+.show-notification {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  transition-duration: 1s;
+  z-index: 100;
+}
