@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   resources :lists
 
+  #get '/lists/of/:id', to: 'lists#lists_of'
+
   get '/user/profile', to: 'users#view'
   get '/user/profile/edit', to: 'users#edit'
 end

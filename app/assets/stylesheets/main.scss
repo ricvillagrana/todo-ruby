@@ -2,10 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "bulma";
-@import 'font-awesome/scss/font-awesome.scss';
+@import 'font-awesome/scss/font-awesome.css';
 
 .fa {
   padding-right: 5px;
+}
+.fa-no-border{
+  padding-right: 0px;
 }
 
 $sizes: (0,1,2,3,4,5,10,15,20,25,30,35,40,45,50);
