@@ -14,10 +14,20 @@ class TasksController < ApplicationController
     end
   end
 
+  def update
+    @task = Task.find(params[:id])
+    @task.done = params[:task][:done]
+    if @task.save
+      render json: { task: @task }
+    else
+      render json: { error: @task.errors }
+    end
+  end
+
   private
 
   def tasks_params
     params.require(:task)
-    params.permit(:name, :done, :list_id)
+    params.permit(:id, :name, :done, :list_id)
   end
 end
