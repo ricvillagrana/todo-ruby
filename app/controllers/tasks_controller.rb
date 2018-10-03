@@ -25,6 +25,15 @@ class TasksController < ApplicationController
     end
   end
 
+  def destroy
+    @task = Task.find(params[:id])
+    if @task.destroy
+      render json: { task: @task }
+    else
+      render json: { error: @task.errors }
+    end
+  end
+
   private
 
   def tasks_params

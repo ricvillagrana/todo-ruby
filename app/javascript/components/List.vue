@@ -9,7 +9,7 @@
         {{ list.description }}
       </p>
       <div class="tasks-list" v-for="(task, key) in list.tasks" :key="key">
-        <task :task="task" />
+        <task :task="task" @shouldRemoveTask="removeTask($event)" />
       </div>
       <div class="add-task button is-link mt-15" @click="addTask"><i class="fa fa-plus"></i></div>
     </div>
@@ -61,6 +61,9 @@
             })
           }
         })
+      },
+      removeTask: function (task_id) {
+        this.list.tasks = this.list.tasks.filter(task => task.id != task_id)
       }
     }
   }

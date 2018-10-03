@@ -5,10 +5,10 @@
     </div>
     <div :id="`task-${task.id}`" class="dropdown-menu" role="menu" style="display: none;">
       <div class="dropdown-content" id="dropdown-content">
-         <a class="dropdown-item has-text-link" @click="$emit('toggle-edit')">
+         <a class="dropdown-item has-text-link" @click="$emit('allowEdit')">
             <i class="fa fa-edit"></i> Edit
           </a>
-          <a class="dropdown-item has-text-danger">
+          <a class="dropdown-item has-text-danger" @click="$emit('deleteTask')">
             <i class="fa fa-times"></i> Delete
           </a>
       </div>

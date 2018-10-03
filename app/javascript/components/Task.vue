@@ -5,7 +5,7 @@
         <i slot="extra" class="icon mdi mdi-check"></i>
       </p-check>
       <span @click="task.edit = true">{{ task.name }}</span>
-      <task-options :task="task" @toggle-edit="task.edit = true" />
+      <task-options :task="task" @allowEdit="task.edit = true" @deleteTask="deleteTask" />
     </div>
     <div v-else>
       <input @keyup.enter="toggleName" type="text" :value="task.name" class="input column" />
@@ -33,6 +33,21 @@
         const that = this
         that.task.done = !that.task.done
         this.save()
+      },
+      deleteTask: function () {
+        const that = this
+        axios.delete(`/tasks/${this.task.id}`)
+        .then(({data}) => {
+          that.$emit('shouldRemoveTask', that.task.id)
+        })
+        .catch(err => {
+          console.log(err)
+          swal({
+            type: 'error',
+            title: 'Failed to delete task',
+            text: `Error: ${err}`
+          })
+        })
       },
       save: function () {
         const that = this
