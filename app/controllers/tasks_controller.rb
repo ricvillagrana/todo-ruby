@@ -6,7 +6,7 @@ class TasksController < ApplicationController
 
   def create
     list = List.find(params[:list_id])
-    @task = list.tasks.create(task_params)
+    @task = list.tasks.create(tasks_params)
     if @task.save
       render json: { task: @task }
     else

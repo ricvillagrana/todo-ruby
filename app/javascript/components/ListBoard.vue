@@ -7,7 +7,7 @@
     <div class="lists columns is-4-desktop is-3-tablet is-1-mobile">
       <div v-if="lists.length == 0">No lists yet <a @click="addList">add one.</a></div>
       <div class="column is-3" v-for="(list, key) in lists" :key="key">
-        <list :list="list" />
+        <list :list="list" @shouldFetch="fetchLists" />
       </div>
     </div>
   </div>
