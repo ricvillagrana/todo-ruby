@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
 
   def index
-    render json: { tasks: current_user.tasks }
+    render json: { tasks: current_user.tasks.order_by(id: :asc) }
   end
 
   def create
@@ -17,6 +17,7 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     @task.done = params[:task][:done]
+    @task.name = params[:task][:name]
     if @task.save
       render json: { task: @task }
     else

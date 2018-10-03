@@ -1,14 +1,14 @@
 <template>
   <div>
     <div v-if="!task.edit">
-      <p-check class="p-icon p-round p-plain p-smooth m-0" color="primary" :checked="task.done" @click.native="toggle">
+      <p-check class="p-icon p-round p-plain p-smooth m-0" color="primary" :checked="task.done" @click.native="toggleDone">
         <i slot="extra" class="icon mdi mdi-check"></i>
       </p-check>
       <span @click="task.edit = true">{{ task.name }}</span>
       <task-options :task="task" @toggle-edit="task.edit = true" />
     </div>
     <div v-else>
-      <input @keyup.enter="save" type="text" :value="task.name" class="input column" />
+      <input @keyup.enter="toggleName" type="text" :value="task.name" class="input column" />
     </div>
   </div>
 </template>
@@ -24,13 +24,18 @@
       TaskOptions
     },
     methods: {
-      save: function (event) {
+      toggleName: function (event) {
         this.task.name = event.target.value
         this.task.edit = false
+        this.save()
       },
-      toggle: function () {
+      toggleDone: function () {
         const that = this
         that.task.done = !that.task.done
+        this.save()
+      },
+      save: function () {
+        const that = this
         const task = {
           id: that.task.id,
           name: that.task.name,
