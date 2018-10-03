@@ -3,7 +3,7 @@
     <div class="card-content">
       <div class="title">
         {{ list.name }}
-        <list-options :list="list" />
+        <list-options :list="list" @delete="deleteList" />
       </div>
       <p class="subtitle">
         {{ list.description }}
@@ -64,6 +64,38 @@
       },
       removeTask: function (task_id) {
         this.list.tasks = this.list.tasks.filter(task => task.id != task_id)
+      },
+      deleteList: function () {
+        const that = this
+        swal({
+          title: `Are you sure you want to delete ${this.list.name}?`,
+          text: "You won't be able to revert this; Even all your tasks are going to be deleted!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it'
+        }).then((result) => {
+          if (result.value) {
+            axios.delete(`/lists/${this.list.id}`)
+            .then(({data}) => {
+              swal(
+                'Deleted!',
+                `${that.list.name} has been deleted.`,
+                'success'
+              )
+              that.$emit('shouldRemoveList', that.list.id)
+            })
+            .catch(err => {
+              console.log(err)
+              swal({
+                type: 'error',
+                title: 'Failed to delete task',
+                text: `Error: ${err}`
+              })
+            })
+          }
+        })
       }
     }
   }

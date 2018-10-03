@@ -5,7 +5,7 @@
         <i slot="extra" class="icon mdi mdi-check"></i>
       </p-check>
       <span @click="task.edit = true">{{ task.name }}</span>
-      <task-options :task="task" @allowEdit="task.edit = true" @deleteTask="deleteTask" />
+      <task-options :task="task" @edit="task.edit = true" @delete="deleteTask" />
     </div>
     <div v-else>
       <input @keyup.enter="toggleName" type="text" :value="task.name" class="input column" />
