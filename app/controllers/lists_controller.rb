@@ -9,7 +9,7 @@ class ListsController < ApplicationController
   end
 
   def index
-    @lists = current_user.lists
+    @lists = current_user.lists.order(id: :desc)
     render json: { lists: @lists.to_json(include: :tasks) }
   end
 

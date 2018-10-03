@@ -4,24 +4,10 @@
       <span class="title is-3">My lists</span>
       <a @click="addList" class="button is-link is-rounded is-pulled-right"><i class="fa fa-plus"></i> Add new</a>
     </div>
-    <div class="lists columns is-4">
+    <div class="lists columns is-4-desktop is-3-tablet is-1-mobile">
       <div v-if="lists.length == 0">No lists yet <a @click="addList">add one.</a></div>
       <div class="column is-3" v-for="(list, key) in lists" :key="key">
-        <div class="card">
-          <div class="card-content">
-            <div class="title">
-              {{ list.name }}
-              <list-options :list="list" />
-            </div>
-            <p class="subtitle">
-              {{ list.description }}
-            </p>
-            <div class="tasks-list" v-for="(task, key) in list.tasks" :key="key">
-              <task :task="task" />
-            </div>
-            <div class="add-task button is-link mt-15"><i class="fa fa-plus"></i></div>
-          </div>
-        </div>
+        <list :list="list" />
       </div>
     </div>
   </div>
@@ -31,17 +17,17 @@
 import swal from 'sweetalert2'
 import axios from 'axios'
 import ListOptions from './ListOptions'
-import Task from './Task'
+import List from './List'
 
 export default {
-  name: 'list',
+  name: 'list-board',
   data() {
     return {
       lists: []
     }
   },
   components: {
-    Task, ListOptions
+    ListOptions, List
   },
   beforeMount() {
     this.fetchLists()

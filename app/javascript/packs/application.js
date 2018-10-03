@@ -12,7 +12,7 @@ import Vue from 'vue/dist/vue.esm'
 import Notify from '../components/Notify'
 import axios from 'axios'
 import App from '../app.vue'
-import Lists from '../components/Lists'
+import ListBoard from '../components/ListBoard'
 import PrettyInput from 'pretty-checkbox-vue/input';
 import PrettyCheck from 'pretty-checkbox-vue/check';
 import PrettyRadio from 'pretty-checkbox-vue/radio';
@@ -29,7 +29,7 @@ Vue.component('p-radio', PrettyRadio);
 
 Vue.component('app', App)
 Vue.component('notify', Notify)
-Vue.component('lists', Lists)
+Vue.component('list-board', ListBoard)
 
 document.addEventListener('turbolinks:load', () => {
   const app = new Vue({
