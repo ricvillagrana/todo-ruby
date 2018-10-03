@@ -51,7 +51,9 @@ export default {
       const that = this 
       axios.get('/lists')
       .then(result => {
-        that.lists = JSON.parse(result.data.lists)
+        let preList = JSON.parse(result.data.lists)
+        preList.map(list => list.tasks.map(task => task.edit = false))
+        that.lists = preList
       })
       .catch(err => {
         swal({

@@ -1,19 +1,33 @@
 <template>
   <div>
-    <p-check class="p-icon p-round p-plain p-smooth" color="primary" :checked="task.done" @click.native="toggle">
+    <div v-if="!task.edit">
+      <p-check class="p-icon p-round p-plain p-smooth m-0" color="primary" :checked="task.done" @click.native="toggle">
         <i slot="extra" class="icon mdi mdi-check"></i>
-        {{ task.name }}
-    </p-check>
+      </p-check>
+      <span @click="task.edit = true">{{ task.name }}</span>
+      <task-options :task="task" @toggle-edit="task.edit = true" />
+    </div>
+    <div v-else>
+      <input @keyup.enter="save" type="text" :value="task.name" class="input column" />
+    </div>
   </div>
 </template>
 
 <script>
   import axios from 'axios'
   import swal from 'sweetalert2'
+  import TaskOptions from './TaskOptions'
 
   export default {
     props: ['task'],
+    components: {
+      TaskOptions
+    },
     methods: {
+      save: function (event) {
+        this.task.name = event.target.value
+        this.task.edit = false
+      },
       toggle: function () {
         const that = this
         that.task.done = !that.task.done
@@ -25,7 +39,6 @@
         }
         axios.put(`/tasks/${this.task.id}`, { task })
         .then(({data}) => {
-          console.log(data.task)
           that.task.done = data.task.done
         })
         .catch(err => {
