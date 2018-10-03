@@ -79,11 +79,6 @@
           if (result.value) {
             axios.delete(`/lists/${this.list.id}`)
             .then(({data}) => {
-              swal(
-                'Deleted!',
-                `${that.list.name} has been deleted.`,
-                'success'
-              )
               that.$emit('shouldRemoveList', that.list.id)
             })
             .catch(err => {
