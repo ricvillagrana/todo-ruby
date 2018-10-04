@@ -8,8 +8,12 @@
         </figure>
       </div>
       <div class="media-content">
-        <p class="title is-4"><%= @user.name %> <%= @user.lastname %></p>
-        <p class="subtitle is-6"><%= @user.email %></p>
+        <p class="title is-3 is-12-tablet is-12-mobile"><%= @user.name %> <%= @user.lastname %></p>
+        <p class="subtitle is-4"><%= @user.email %></p>
+        <p class="is-6">Has <%= @user.lists.count %> lists
+        and <%= @user.tasks.where(done: true).count %>/<%= @user.tasks.count %>  completed taks</p>
+        <% percentage = @user.tasks.where(done: true).count.to_f / @user.tasks.count * 100 %>
+        <progress-bar class="mx-25" bar-color="#3273dc" val="<%= percentage %>" text="<%= "#{percentage}%" %>" />
       </div>
     </div>
 

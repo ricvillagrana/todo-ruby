@@ -16,6 +16,7 @@ import ListBoard from '../components/ListBoard'
 import PrettyInput from 'pretty-checkbox-vue/input';
 import PrettyCheck from 'pretty-checkbox-vue/check';
 import PrettyRadio from 'pretty-checkbox-vue/radio';
+import ProgressBar from 'vue-simple-progress'
 
 let token = document.getElementsByName('csrf-token')[0].getAttribute('content')
 axios.defaults.headers.common['X-CSRF-Token'] = token
@@ -26,6 +27,8 @@ Vue.use(TurbolinksAdapter)
 Vue.component('p-input', PrettyInput);
 Vue.component('p-check', PrettyCheck);
 Vue.component('p-radio', PrettyRadio);
+
+Vue.component('progress-bar', ProgressBar)
 
 Vue.component('app', App)
 Vue.component('notify', Notify)
