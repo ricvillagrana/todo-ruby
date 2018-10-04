@@ -38,6 +38,7 @@ export default {
       axios.get('/lists')
       .then(result => {
         let preList = JSON.parse(result.data.lists)
+        preList.map(list => list.edit = false)
         preList.map(list => list.tasks.map(task => task.edit = false))
         that.lists = preList
       })

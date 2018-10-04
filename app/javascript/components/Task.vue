@@ -27,12 +27,12 @@
       toggleName: function (event) {
         this.task.name = event.target.value
         this.task.edit = false
-        this.save()
+        this.saveTask()
       },
       toggleDone: function () {
         const that = this
         that.task.done = !that.task.done
-        this.save()
+        this.saveTask()
       },
       deleteTask: function () {
         const that = this
@@ -49,7 +49,7 @@
           })
         })
       },
-      save: function () {
+      saveTask: function () {
         const that = this
         const task = {
           id: that.task.id,

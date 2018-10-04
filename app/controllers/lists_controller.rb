@@ -13,9 +13,20 @@ class ListsController < ApplicationController
     end
   end
 
+  def update
+    @list = List.find(params[:id])
+    @list.name = params[:list][:name]
+    @list.description = params[:list][:description]
+    if @list.save
+      render json: { list: @list }
+    else
+      render json: { error: @list.errors }
+    end
+  end
+
   def destroy
     @list = List.find(params[:id])
-    @list.tasks.map {|task| task.destroy}
+    @list.tasks.map(&:destroy)
     if @list.destroy
       render json: { list: @list }
     else
@@ -27,7 +38,7 @@ class ListsController < ApplicationController
 
   def list_params
     params.require(:list)
-    params.permit(:name, :description)
+    params.permit(:id, :name, :description)
   end
 
 end
