@@ -86,4 +86,4 @@ production:
   database: dltlpecn6v7qo
   host: ec2-23-23-80-20.compute-1.amazonaws.com
   username: 'iwunrdtdtvmyps'
-  password: '8e3fd1a9f675f8fc3e70ca8c4e3f930b8661baf80d5afcf6552daed4bbe05ed3'
+  password: <%= ENV['TODO_DATABASE_PASSWORD'] %>
