@@ -16,17 +16,27 @@
 #
 default: &default
   adapter: postgresql
-  encoding: unicode
-  host: 'localhost'
-  username: 'ricardo'
-  password: 1234
+  # local
+  # encoding: unicode
+  # host: 'localhost'
+  # username: 'ricardo'
+  # password: 1234
+
+  # production
+  host: ec2-23-23-80-20.compute-1.amazonaws.com
+  username: iwunrdtdtvmyps
+  password: 8e3fd1a9f675f8fc3e70ca8c4e3f930b8661baf80d5afcf6552daed4bbe05ed3
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: todo_development
+  # local
+  # database: todo_development
+
+  # production
+  database: dltlpecn6v7qo
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
