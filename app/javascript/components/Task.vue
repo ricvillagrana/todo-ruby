@@ -4,7 +4,7 @@
       <p-check class="p-icon p-round p-plain p-smooth m-0" color="primary" :checked="task.done" @click.native="toggleDone">
         <i slot="extra" class="icon mdi mdi-check"></i>
       </p-check>
-      <span @click="nameEditable">{{ task.name }}</span>
+      <span @click="toggleDone">{{ task.name }}</span>
       <task-options :task="task" @edit="nameEditable" @delete="deleteTask" />
     </div>
     <div v-else>
