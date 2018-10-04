@@ -1,28 +1,33 @@
 <template>
   <div class="card">
     <div class="card-content">
-      <div class="title">
-        <div v-if="!list.edit">
-          <list-options :list="list" @delete="deleteList" @edit="list.edit = true" />
-          {{ list.name }}
+      <div class="list-data mb-25" v-if="!list.edit">
+        <div class="title">
+          <div>
+            <list-options :list="list" @delete="deleteList" @edit="list.edit = true" />
+            {{ list.name }}
+          </div>
         </div>
-        <div v-else>
-          <input :id="`list-${list.id}-name`" type="text" class="input" :value="list.name" />
-        </div>
-      </div>
-      <div class="subtitle">
-        <div v-if="!list.edit">
-          {{ list.description }}
-        </div>
-        <div v-else>
-          <input :id="`list-${list.id}-description`" type="text" class="input" :value="list.description" />
-          <button class="is-full-width button is-success-outlined is-small is-pulled-right" @click="saveList"><i class="fa fa-save"></i> Save</button>
+        <div class="subtitle">
+            {{ list.description }}
         </div>
       </div>
-      <div class="tasks-list" v-for="(task, key) in list.tasks" :key="key">
-        <task :task="task" @shouldRemoveTask="removeTask($event)" />
+      <div v-else class="mb-45">
+        <input :id="`list-${list.id}-name`" type="text" class="input" :value="list.name" />
+        <input :id="`list-${list.id}-description`" type="text" class="input" :value="list.description" />
+        <button class="is-full-width button is-success is-outlined is-pulled-right" @click="saveList"><i class="fa fa-save"></i> Save</button>
       </div>
-      <div class="is-full-width button is-link mt-15" @click="addTask"><i class="fa fa-plus"></i></div>
+      <div class="progress-bar">
+        <progress-bar class="mx-25" bar-color="#3273dc" :val="percentage" :text="`${percentage}%`" />
+      </div>
+      <div class="tasks">
+        <div class="tasks-list" v-for="(task, key) in list.tasks" :key="key">
+          <task :task="task" @shouldRemoveTask="removeTask($event)" />
+        </div>
+      </div>
+      <div class="add-task-button">
+        <button class="is-full-width button is-link mt-15" @click="addTask"><i class="fa fa-plus"></i></button>
+      </div>
     </div>
   </div>
 </template>
@@ -30,6 +35,7 @@
 <script>
   import axios from 'axios'
   import swal from 'sweetalert2'
+  import ProgressBar from 'vue-simple-progress'
   import ListOptions from './ListOptions'
   import Task from './Task'
   
@@ -37,7 +43,15 @@
     name: 'list',
     props: ['list'],
     components: {
-      ListOptions, Task
+      ListOptions, Task, ProgressBar
+    },
+    computed: {
+      percentage: function () {
+        return this.list.tasks.length == 0 ? 100 : Math.trunc(this.tasksDone / this.list.tasks.length * 100)
+      },
+      tasksDone: function () {
+        return this.list.tasks.filter(task => task.done).length
+      }
     },
     methods: {
       addTask: function () {
