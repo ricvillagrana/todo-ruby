@@ -11,9 +11,9 @@ import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
 import Notify from '../components/Notify'
 import axios from 'axios'
-import PrettyInput from 'pretty-checkbox-vue/input';
-import PrettyCheck from 'pretty-checkbox-vue/check';
-import PrettyRadio from 'pretty-checkbox-vue/radio';
+import PrettyInput from 'pretty-checkbox-vue/input'
+import PrettyCheck from 'pretty-checkbox-vue/check'
+import PrettyRadio from 'pretty-checkbox-vue/radio'
 import ProgressBar from 'vue-simple-progress'
 import App from '../app.vue'
 import ListBoard from '../components/ListBoard'
