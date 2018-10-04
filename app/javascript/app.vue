@@ -7,7 +7,7 @@
         </span>
       </div>
 
-      <div id="navbarExampleTransparentExample" class="navbar-menu">
+      <div class="navbar-menu">
         <div class="navbar-start">
           <a class="navbar-item" href="/">
             My lists
@@ -16,7 +16,7 @@
       </div>
       <div class="navbar-end">
         <div class="navbar-item">
-          <user-menu :user="user" :token="token" />
+          <user-menu class="desktop" :user="user" :token="token" />
         </div>
       </div>
     </nav>

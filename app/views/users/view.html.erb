@@ -13,7 +13,7 @@
         <p class="is-6">Has <%= @user.lists.count %> lists
         and <%= @user.tasks.where(done: true).count %>/<%= @user.tasks.count %>  completed taks</p>
         <% percentage = @user.tasks.where(done: true).count.to_f / @user.tasks.count * 100 %>
-        <progress-bar class="mx-25" bar-color="#3273dc" val="<%= percentage %>" text="<%= "#{percentage}%" %>" />
+        <progress-bar class="mx-25" bar-color="#3273dc" val="<%= percentage.round(2) %>" text="<%= "#{percentage.round(2)}%" %>" />
       </div>
     </div>
 

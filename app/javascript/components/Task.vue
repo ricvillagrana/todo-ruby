@@ -4,11 +4,11 @@
       <p-check class="p-icon p-round p-plain p-smooth m-0" color="primary" :checked="task.done" @click.native="toggleDone">
         <i slot="extra" class="icon mdi mdi-check"></i>
       </p-check>
-      <span @click="task.edit = true">{{ task.name }}</span>
-      <task-options :task="task" @edit="task.edit = true" @delete="deleteTask" />
+      <span @click="nameEditable">{{ task.name }}</span>
+      <task-options :task="task" @edit="nameEditable" @delete="deleteTask" />
     </div>
     <div v-else>
-      <input @keyup.enter="toggleName" type="text" :value="task.name" class="input column" />
+      <input :id="`task-${task.id}-name`" @keyup.enter="toggleName" type="text" :value="task.name" class="input column" />
     </div>
   </div>
 </template>
@@ -24,6 +24,12 @@
       TaskOptions
     },
     methods: {
+      nameEditable: function () {
+        this.task.edit = true
+        setTimeout(() => {
+          document.getElementById(`task-${this.task.id}-name`).focus()
+        }, 100)
+      },
       toggleName: function (event) {
         this.task.name = event.target.value
         this.task.edit = false
@@ -36,17 +42,29 @@
       },
       deleteTask: function () {
         const that = this
-        axios.delete(`/tasks/${this.task.id}`)
-        .then(({data}) => {
-          that.$emit('shouldRemoveTask', that.task.id)
-        })
-        .catch(err => {
-          console.log(err)
-          swal({
-            type: 'error',
-            title: 'Failed to delete task',
-            text: `Error: ${err}`
-          })
+        swal({
+          title: `Are you sure you want to delete ${this.task.name}?`,
+          text: "You won't be able to revert this!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it'
+        }).then((result) => {
+          if (result.value) {
+            axios.delete(`/tasks/${this.task.id}`)
+            .then(({data}) => {
+              that.$emit('shouldRemoveTask', that.task.id)
+            })
+            .catch(err => {
+              console.log(err)
+              swal({
+                type: 'error',
+                title: 'Failed to delete task',
+                text: `Error: ${err}`
+              })
+            })
+          }
         })
       },
       saveTask: function () {

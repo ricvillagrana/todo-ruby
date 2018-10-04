@@ -1,7 +1,7 @@
 <template>
   <div class="dropdown is-right is-active" @click="toggleMenu">
     <div class="dropdown-trigger">
-      <button class="button is-primary" aria-haspopup="true" aria-controls="dropdown-menu6">
+      <button class="button is-light" aria-haspopup="true" aria-controls="dropdown-menu6">
         <i class="fa fa-user"></i> {{ user.name }}
       </button>
     </div>

@@ -15,7 +15,7 @@
       <div v-else class="mb-45">
         <input :id="`list-${list.id}-name`" type="text" class="input" :value="list.name" />
         <input :id="`list-${list.id}-description`" type="text" class="input" :value="list.description" />
-        <button class="is-full-width button is-success is-outlined is-pulled-right" @click="saveList"><i class="fa fa-save"></i> Save</button>
+        <button class="is-full-width button is-link is-pulled-right" @click="saveList"><i class="fa fa-save"></i> Save</button>
       </div>
       <div class="progress-bar">
         <progress-bar class="mx-25" bar-color="#3273dc" :val="percentage" :text="`${percentage}%`" />
