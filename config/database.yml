@@ -83,7 +83,7 @@ test:
 #
 production:
   <<: *default
-  database: dltlpecn6v7qo
-  host: ec2-23-23-80-20.compute-1.amazonaws.com
-  username: 'iwunrdtdtvmyps'
+  database: d7i2ndpieak69i
+  host: ec2-184-73-202-79.compute-1.amazonaws.com
+  username: dqloculehweuwq
   password: <%= ENV['TODO_DATABASE_PASSWORD'] %>
