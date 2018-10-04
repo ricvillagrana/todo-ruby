@@ -19,10 +19,15 @@
         </div>
       <% end -%>
 
-      <div class="actions">
+      <div class="actions has-text-centered">
         <%= f.submit "Log in", class: 'button is-primary' %>
       </div>
     <% end %>
-    <%= render "devise/shared/links" %>
+    <div class="is-full-width my-25 has-text-centered">
+      <a href="<%= user_facebook_omniauth_authorize_path %>" class="facebook-button"><i class="fa fa-facebook mr-15"></i>Sign in with Facebook</a>
+    </div>
+    <div class="is-full-width">
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
 </div>

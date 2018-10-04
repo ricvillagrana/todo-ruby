@@ -60,6 +60,7 @@ $positions: ('top','left','bottom','right');
   position: absolute;
   bottom: 25px;
   right: -100%;
+  display: none;
   transition-duration: 1s;
 }
 .show-notification {

@@ -55,6 +55,12 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+# Font Awesome Icons
 gem 'font-awesome-rails'
+
+# Devise OmniAuth
 gem 'devise'
+gem 'omniauth-facebook'
+
+# Bilma CSS Framework
 gem "bulma-rails", "~> 0.7.1"

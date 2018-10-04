@@ -2,7 +2,12 @@
   <div class="dropdown is-right is-active" @click="toggleMenu">
     <div class="dropdown-trigger">
       <button class="button is-light" aria-haspopup="true" aria-controls="dropdown-menu6">
-        <i class="fa fa-user"></i> {{ user.name }}
+        <figure class="mr-10">
+          <img 
+            :src="user.image != null ? user.image : 'https://art.placefull.com/Content/Properties/shared/images/no-profile-image.png'" 
+            :alt="user.name" 
+            class="is-rounded" />
+        </figure>  {{ user.name }}
       </button>
     </div>
     <div class="dropdown-menu" role="menu">
