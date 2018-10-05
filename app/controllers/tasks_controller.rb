@@ -14,18 +14,22 @@ class TasksController < ApplicationController
     end
   end
 
-  def export_csv
+  def export
     respond_to do |format|
       format.html
       format.csv { send_data current_user.tasks.to_csv, filename: "tasks-#{current_user.name}-#{Date.today}.csv" }
     end
   end
 
-  def export_csv_from_list
+  def export_from_list
     list = current_user.lists.find(params[:id])
     respond_to do |format|
       format.html
       format.csv { send_data list.tasks.to_csv, filename: "tasks-#{current_user.name}-#{list.name}-#{Date.today}.csv" }
+      format.pdf do
+        pdf = TasksPdf.new(list)
+        send_data pdf.render, filename: "tasks-#{current_user.name}-#{list.name}-#{Date.today}.pdf", type: 'application/pdf'
+      end
     end
   end
 

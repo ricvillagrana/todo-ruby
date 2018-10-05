@@ -64,3 +64,6 @@ gem 'omniauth-facebook'
 
 # Bilma CSS Framework
 gem "bulma-rails", "~> 0.7.1"
+
+# Export to PDF
+gem 'prawn'

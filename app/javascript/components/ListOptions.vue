@@ -7,10 +7,10 @@
     </div>
     <div :id="`list-${list.id}`" class="dropdown-menu" role="menu" style="display: none;">
       <div class="dropdown-content" id="dropdown-content">
-        <a class="dropdown-item" target="_blank" :href="`/export/pdf/tasks/${list.id}.csv`">
+        <a class="dropdown-item" target="_blank" :href="`/export/tasks/${list.id}.pdf`">
           <i class="fa fa-file-o"></i> Download PDF
         </a>
-        <a class="dropdown-item" target="_blank" :href="`/export/csv/tasks/${list.id}.csv`">
+        <a class="dropdown-item" target="_blank" :href="`/export/tasks/${list.id}.csv`">
           <i class="fa fa-file-pdf-o"></i> Download CSV
         </a>
         <hr class="dropdown-divider">

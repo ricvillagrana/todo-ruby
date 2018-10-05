@@ -10,18 +10,15 @@
     </div>
     <div class="dropdown-menu" id="dropdown-menu" role="menu">
       <div class="dropdown-content">
-        <a target="_blank" :href="`/export/csv/lists.csv`" class="dropdown-item">
+        <a target="_blank" :href="`/export/lists.csv`" class="dropdown-item">
           <i class="fa fa-file-o"></i> Export to CSV
         </a>
-        <a target="_blank" :href="`/export/pdf/lists.csv`"  class="dropdown-item">
+        <a target="" :href="`/export/lists.pdf`"  class="dropdown-item">
           <i class="fa fa-file-pdf-o"></i> Export to PDF
         </a>
         <hr class="dropdown-divider">
-        <a target="_blank" :href="`/export/csv/tasks.csv`"  class="dropdown-item">
-          <i class="fa fa-file-pdf-o"></i> Export all tasks to CSV
-        </a>
-        <a target="_blank" :href="`/export/pdf/tasks.csv`"  class="dropdown-item">
-          <i class="fa fa-file-pdf-o"></i> Export all tasks to PDF
+        <a target="_blank" :href="`/export/tasks.csv`"  class="dropdown-item">
+          <i class="fa fa-file-o"></i> Export all tasks to CSV
         </a>
       </div>
     </div>

@@ -4,10 +4,14 @@ class ListsController < ApplicationController
     render json: { lists: @lists.to_json(include: :tasks) }
   end
 
-  def export_csv
+  def export
     respond_to do |format|
       format.html
       format.csv { send_data current_user.lists.to_csv, filename: "lists-#{current_user.name}-#{Date.today}.csv" }
+      format.pdf do
+        pdf = ListsPdf.new(current_user)
+        send_data pdf.render, filename: "lists-#{current_user.name}-#{Date.today}.pdf", type: 'application/pdf'
+      end
     end
   end
 
