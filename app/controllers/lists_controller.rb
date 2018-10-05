@@ -4,6 +4,13 @@ class ListsController < ApplicationController
     render json: { lists: @lists.to_json(include: :tasks) }
   end
 
+  def export_csv
+    respond_to do |format|
+      format.html
+      format.csv { send_data current_user.lists.to_csv, filename: "lists-#{current_user.name}-#{Date.today}.csv" }
+    end
+  end
+
   def create
     @list = current_user.lists.create(list_params)
     if @list.save

@@ -14,6 +14,21 @@ class TasksController < ApplicationController
     end
   end
 
+  def export_csv
+    respond_to do |format|
+      format.html
+      format.csv { send_data current_user.tasks.to_csv, filename: "tasks-#{current_user.name}-#{Date.today}.csv" }
+    end
+  end
+
+  def export_csv_from_list
+    list = current_user.lists.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.csv { send_data list.tasks.to_csv, filename: "tasks-#{current_user.name}-#{list.name}-#{Date.today}.csv" }
+    end
+  end
+
   def update
     @task = Task.find(params[:id])
     @task.done = params[:task][:done]
