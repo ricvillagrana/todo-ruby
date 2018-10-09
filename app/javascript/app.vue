@@ -16,7 +16,7 @@
       </div>
       <div class="navbar-end">
         <div class="navbar-item">
-          <user-menu class="desktop" :user="user" :token="token" />
+          <user-menu class="desktop" :user="user" :avatar="avatar" />
         </div>
       </div>
     </nav>
@@ -32,7 +32,7 @@ export default {
     return {
     }
   },
-  props: ['user', 'token'],
+  props: ['user', 'token', 'avatar'],
   components: {
     UserMenu
   }
