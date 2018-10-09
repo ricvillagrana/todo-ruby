@@ -28,7 +28,6 @@ class User < ApplicationRecord
     "#{name} #{lastname}"
   end
 
-
   has_one_attached :avatar
 
   has_many :lists
