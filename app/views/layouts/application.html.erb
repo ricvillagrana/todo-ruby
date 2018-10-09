@@ -35,7 +35,7 @@
       }(document, 'script', 'facebook-jssdk'));
     </script>
     <div id="app" class="container-fluid">
-      <app :user="<%= @user.to_json %>" :avatar="'<%= url_for(@user.avatar) %>'" :token="<%= form_authenticity_token.to_json %>">
+      <app :user="<%= @user.to_json %>" :avatar="'<%= url_for(@user.avatar) if user_signed_in? and @user.avatar.attached? %>'" :token="<%= form_authenticity_token.to_json %>">
         <div class="notice level">
           <% if notice != nil %>
             <notify type="info" text="<%= notice %>" />
