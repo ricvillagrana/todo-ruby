@@ -4,8 +4,7 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
-  # CSV
-  get 'lists/csv', to: 'lists#csv'
+  get '/send_mail', to: 'main#send_mail'
 
   root 'main#index'
 

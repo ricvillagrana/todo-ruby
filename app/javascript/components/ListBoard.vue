@@ -3,6 +3,7 @@
     <div class="mb-40">
       <span class="title is-3">My lists</span>
       <a @click="addList" class="button is-link is-rounded is-pulled-right"><i class="fa fa-plus"></i> Add new</a>
+      <a href="/send_mail" class="button is-warning is-rounded is-pulled-right mr-15"><i class="fa fa-envelope"></i> Send mail with my lists</a>
       <download-list />
     </div>
     <div class="lists columns is-4-desktop is-3-tablet is-1-mobile">
