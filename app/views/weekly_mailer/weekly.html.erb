@@ -15,24 +15,24 @@
       }
       .card {
         padding: 25px;
-        margin: 25px;
+        margin: 25px 0px;
         background: white;
         border-radius: 10px;
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
       }
       .done {
         font-size: 10px;
-        color: #ccc;
+        color: #555;
       }
     </style>
   </head>
   <body>
-    <div class="container">
+    <div class="container card">
       <h1>Hi <%= @user.fullname %></h1>
       <p>
         <p>Here are your lists:</p>
         <% @user.lists.each do |list| %>
-        <div class="card">
+        <div>
           <h2><%= list.name %></h2>
           <p><%= list.description %></p>
           <ul>
