@@ -13,4 +13,9 @@ class MainController < ApplicationController
     end
   end
 
+  def schedule_mail
+    TodoReminderWorker.perform_in(5.seconds)
+    render json: {}
+  end
+
 end

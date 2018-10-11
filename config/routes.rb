@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   }
 
   get '/send_mail', to: 'main#send_mail'
+  get '/schedule_mail', to: 'main#schedule_mail'
 
   root 'main#index'
 
