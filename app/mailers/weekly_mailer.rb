@@ -3,6 +3,6 @@ class WeeklyMailer < ApplicationMailer
 
   def weekly(user)
     @user = user
-    mail(to: user.email, subject: 'Sample Email')
+    mail(to: user.email, subject: 'Weekly reminder for complete your tasks!')
   end
 end

@@ -3,7 +3,7 @@
     <div class="mb-40">
       <span class="title is-3">My lists</span>
       <a @click="addList" class="button is-link is-rounded is-pulled-right"><i class="fa fa-plus"></i> Add new</a>
-      <a href="/send_mail" class="button is-warning is-rounded is-pulled-right mr-15"><i class="fa fa-envelope"></i> Send mail with my lists</a>
+      <a @click="sendMail" class="button is-warning is-rounded is-pulled-right mr-15"><i class="fa fa-envelope"></i> Send mail with my lists</a>
       <download-list />
     </div>
     <div class="lists columns is-4-desktop is-3-tablet is-1-mobile">
@@ -53,6 +53,25 @@ export default {
         })
       }) 
     },
+    sendMail: function () {
+      this.loading()
+      axios.get('/send_mail')
+      .then(({data}) => {
+        swal(
+          'Email sent',
+          `The email has been sent, check your inbox.
+          ${data.message}`,
+          'success'
+        )
+      })
+      .catch(err => {
+        swal({
+          type: 'error',
+          title: 'Error when sending email.',
+          text: `Error: ${err}`
+        })
+      })
+    },
     addList: function () {
       const that = this
       swal.mixin({
@@ -91,6 +110,14 @@ export default {
     },
     removeList: function (list_id) {
       this.lists = this.lists.filter(list => list.id != list_id)
+    },
+    loading: () => {
+      swal({
+        title: 'Ejecutando...',
+        onOpen: () => {
+          swal.showLoading()
+        }
+      })
     }
   }
 }

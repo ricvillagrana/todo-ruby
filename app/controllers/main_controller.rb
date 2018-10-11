@@ -6,9 +6,11 @@ class MainController < ApplicationController
   end
 
   def send_mail
-    mail = WeeklyMailer.weekly(current_user).deliver
-    # render json: mail
-    redirect_to '/'
+    if WeeklyMailer.weekly(current_user).deliver
+      render json: { status: 200, message: "Email sent successfully." }
+    else
+      render json: { status: 500, message: "Error sending the email." }
+    end
   end
 
 end
