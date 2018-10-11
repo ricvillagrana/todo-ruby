@@ -7,6 +7,5 @@ class TodoReminderWorker
       puts "Sending to #{user.fullname}"
       WeeklyMailer.weekly(user).deliver
     end
-    TodoReminderWorker.perform_in(1.week)
   end
 end

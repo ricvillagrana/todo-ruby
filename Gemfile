@@ -72,3 +72,4 @@ gem 'prawn'
 
 # Sidekiq
 gem 'sidekiq'
+gem 'sidekiq-cron'

@@ -3,9 +3,11 @@ Rails.application.routes.draw do
     registrations: 'registrations',
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
+  require 'sidekiq/web'
+  require 'sidekiq/cron/web'
+  mount Sidekiq::Web => '/sidekiq'
 
   get '/send_mail', to: 'main#send_mail'
-  get '/schedule_mail', to: 'main#schedule_mail'
 
   root 'main#index'
 
