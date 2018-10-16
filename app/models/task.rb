@@ -1,6 +1,8 @@
 class Task < ApplicationRecord
   belongs_to :list
 
+  validates_presence_of :name
+
   def self.to_csv
     taskAttributes = %w{id list_id name done}
 
